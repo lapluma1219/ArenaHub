@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArenaHub 双玩家演示</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">ArenaHub</p>
+      <h1>双玩家匹配演示</h1>
+    </div>
+    <div class="topbar-actions">
+      <span id="healthBadge" class="badge neutral">检查服务中</span>
+      <button id="resetDemoBtn" class="button ghost compact">清空本地登录</button>
+    </div>
+  </header>
+
+  <main class="split-layout">
+    <section id="pane-A" class="player-pane pane-a" aria-label="玩家 A 窗口">
+      <div class="pane-inner">
+        <div class="pane-heading">
+          <div>
+            <p class="eyebrow">Player A</p>
+            <h2>玩家 A 的窗口</h2>
+          </div>
+          <span id="sessionBadge-A" class="badge neutral">未登录</span>
+        </div>
+
+        <section id="authView-A" class="card auth-card">
+          <h3>登录或注册</h3>
+          <p class="muted">登录已有账号，或注册一个新账号。</p>
+          <label>
+            用户名
+            <input id="username-A" autocomplete="username" placeholder="至少 3 个字符">
+          </label>
+          <label>
+            密码
+            <input id="password-A" type="password" autocomplete="current-password" placeholder="注册时至少 6 个字符">
+          </label>
+          <label>
+            昵称 <span class="muted">（仅注册需要）</span>
+            <input id="nickname-A" autocomplete="nickname" placeholder="至少 2 个字符">
+          </label>
+          <div class="button-row">
+            <button class="button primary" data-action="login" data-slot="A">登录</button>
+            <button class="button secondary" data-action="register" data-slot="A">注册新账号</button>
+          </div>
+        </section>
+
+        <section id="gameView-A" class="game-view hidden">
+          <article class="card profile-card">
+            <div class="card-head">
+              <h3>我的资料</h3>
+              <button class="button link" data-action="logout" data-slot="A">切换账号</button>
+            </div>
+            <div id="profile-A" class="stats"></div>
+          </article>
+
+          <div class="main-actions">
+            <button id="matchBtn-A" class="button primary large" data-action="match" data-slot="A">开始匹配</button>
+            <button class="button secondary large" data-action="leaderboard" data-slot="A">查询排行</button>
+          </div>
+
+          <article class="card match-card">
+            <div class="card-head">
+              <h3>匹配与对局</h3>
+              <span id="matchBadge-A" class="badge neutral">未匹配</span>
+            </div>
+            <div id="matchContent-A" class="empty-state">点击“开始匹配”进入队列。</div>
+            <button id="winBtn-A" class="button win-button hidden" data-action="win" data-slot="A">我获胜</button>
+          </article>
+
+          <article id="leaderboardCard-A" class="card hidden">
+            <div class="card-head">
+              <h3>当前排行</h3>
+              <button class="button link" data-action="leaderboard" data-slot="A">刷新</button>
+            </div>
+            <div id="leaderboard-A"></div>
+          </article>
+
+          <div id="notice-A" class="notice">登录后可以开始匹配。</div>
+        </section>
+      </div>
+    </section>
+
+    <section id="pane-B" class="player-pane pane-b" aria-label="玩家 B 窗口">
+      <div class="pane-inner">
+        <div class="pane-heading">
+          <div>
+            <p class="eyebrow">Player B</p>
+            <h2>玩家 B 的窗口</h2>
+          </div>
+          <span id="sessionBadge-B" class="badge neutral">未登录</span>
+        </div>
+
+        <section id="authView-B" class="card auth-card">
+          <h3>登录或注册</h3>
+          <p class="muted">登录已有账号，或注册一个新账号。</p>
+          <label>
+            用户名
+            <input id="username-B" autocomplete="username" placeholder="至少 3 个字符">
+          </label>
+          <label>
+            密码
+            <input id="password-B" type="password" autocomplete="current-password" placeholder="注册时至少 6 个字符">
+          </label>
+          <label>
+            昵称 <span class="muted">（仅注册需要）</span>
+            <input id="nickname-B" autocomplete="nickname" placeholder="至少 2 个字符">
+          </label>
+          <div class="button-row">
+            <button class="button primary" data-action="login" data-slot="B">登录</button>
+            <button class="button secondary" data-action="register" data-slot="B">注册新账号</button>
+          </div>
+        </section>
+
+        <section id="gameView-B" class="game-view hidden">
+          <article class="card profile-card">
+            <div class="card-head">
+              <h3>我的资料</h3>
+              <button class="button link" data-action="logout" data-slot="B">切换账号</button>
+            </div>
+            <div id="profile-B" class="stats"></div>
+          </article>
+
+          <div class="main-actions">
+            <button id="matchBtn-B" class="button primary large" data-action="match" data-slot="B">开始匹配</button>
+            <button class="button secondary large" data-action="leaderboard" data-slot="B">查询排行</button>
+          </div>
+
+          <article class="card match-card">
+            <div class="card-head">
+              <h3>匹配与对局</h3>
+              <span id="matchBadge-B" class="badge neutral">未匹配</span>
+            </div>
+            <div id="matchContent-B" class="empty-state">点击“开始匹配”进入队列。</div>
+            <button id="winBtn-B" class="button win-button hidden" data-action="win" data-slot="B">我获胜</button>
+          </article>
+
+          <article id="leaderboardCard-B" class="card hidden">
+            <div class="card-head">
+              <h3>当前排行</h3>
+              <button class="button link" data-action="leaderboard" data-slot="B">刷新</button>
+            </div>
+            <div id="leaderboard-B"></div>
+          </article>
+
+          <div id="notice-B" class="notice">登录后可以开始匹配。</div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

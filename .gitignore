@@ -1,0 +1,21 @@
+target/
+data/
+*.log
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Local environment and tools
+.env
+.env.*
+!.env.example
+.agents/
+.codex/
+
+# Local project notes
+agent.md
+interview.md
+HELP.md
